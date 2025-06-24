@@ -53,8 +53,9 @@ private struct JailBrokenHelper {
     
     static func canEditSystemFiles() -> Bool {
         let jailBreakText = "Developer Insider"
+        let restrictedFilePath = "/private/jailbreakTest.txt"
         do {
-            try jailBreakText.write(toFile: jailBreakText, atomically: true, encoding: .utf8)
+            try jailBreakText.write(toFile: restrictedFilePath, atomically: true, encoding: .utf8)
             return true
         } catch {
             return false
