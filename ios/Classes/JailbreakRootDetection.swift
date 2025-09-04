@@ -11,17 +11,18 @@ import IOSSecuritySuite
 class JailbreakRootDetection {
     
     func checkJailBroken() -> Bool {
+        if UIDevice.current.isSimulator {
+            return false
+        }
         let isJailBroken = UIDevice.current.isJailBroken
         let amJailbroken = IOSSecuritySuite.amIJailbroken()
         let amReverseEngineered = ReverseEngineeringChecker.amIReverseEngineered()
-        let amProxied = IOSSecuritySuite.amIProxied()
         let fridaFound = FridaChecker.isFound()
         let cydiaFound = CydiaChecker.isFound()
         
         return isJailBroken
         || amJailbroken
         || amReverseEngineered
-        || amProxied
         || fridaFound
         || cydiaFound
     }
